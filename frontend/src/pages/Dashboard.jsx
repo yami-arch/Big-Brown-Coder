@@ -15,16 +15,22 @@ import {
 } from "@/components/ui/sidebar"
 import { useEffect, useState } from "react"
 import {fetchStackData} from '../api/fetchStockData.js'
-import  AreaChart from '../components/ui/areaChart.jsx'
-
+import Home from "@/components/home.jsx"
+import FinancialSentimentDashboard from "./FinancialSentimentDashboard.jsx"
+import { ChatInterface } from "@/components/ChatInterface.jsx"
+import CarbonOffsetDApp from "./index.jsx"      
 export default function Dashboard() {
-    const [stockPrice,setStockPrice] = useState([])
-   useEffect(()=>{
-    setStockPrice(fetchStackData());
-   },[])
+  const pages ={
+    '/dashboard':<Home/>,
+    '/news':<FinancialSentimentDashboard/>,
+    '/Ai': <ChatInterface/>,
+    '/crypto':<CarbonOffsetDApp/>
+  }
+  const[select,setSelect] = useState('/dashboard');
+
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar element={setSelect} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
@@ -45,14 +51,7 @@ export default function Dashboard() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-          </div>
-          <AreaChart/>
-        </div>
+        {pages[select]}
       </SidebarInset>
     </SidebarProvider>
   )
