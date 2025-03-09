@@ -106,6 +106,29 @@ const data = {
         },
       ],
     },
+    {
+      title: "Screener",
+      url: "/site",
+      icon: Settings2,
+      items: [
+        {
+          title: "General",
+          url: "#",
+        },
+        {
+          title: "Team",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+        {
+          title: "Limits",
+          url: "#",
+        },
+      ],
+    },
   ],
   projects: [
     {

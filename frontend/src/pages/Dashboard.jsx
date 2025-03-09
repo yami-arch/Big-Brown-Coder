@@ -15,18 +15,24 @@ import {
 } from "@/components/ui/sidebar"
 import { useEffect, useState } from "react"
 import {fetchStackData} from '../api/fetchStockData.js'
+import StockDashboard from "./StockDashboard.jsx"
+import Site from "./Site.jsx"
 import Home from "@/components/home.jsx"
 import FinancialSentimentDashboard from "./FinancialSentimentDashboard.jsx"
 import { ChatInterface } from "@/components/ChatInterface.jsx"
 import CarbonOffsetDApp from "./index.jsx"      
 export default function Dashboard() {
+  const[select,setSelect] = useState('/dashboard');
   const pages ={
     '/dashboard':<Home/>,
     '/news':<FinancialSentimentDashboard/>,
     '/Ai': <ChatInterface/>,
-    '/crypto':<CarbonOffsetDApp/>
+    '/crypto':<CarbonOffsetDApp/>,
+    '/site':<Site ele={setSelect}/>,
+    '/stockdashboard':<StockDashboard/>
+    
   }
-  const[select,setSelect] = useState('/dashboard');
+ 
 
   return (
     <SidebarProvider>
